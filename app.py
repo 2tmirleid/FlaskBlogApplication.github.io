@@ -1,6 +1,8 @@
+import flask
 from flask import *
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'akslkflsmflslsnflsfls'
 
 menu = [{"name": "Установка", "url": "#"},
         {"name": "Первое приложение", "url": "#"},
@@ -10,14 +12,19 @@ menu = [{"name": "Установка", "url": "#"},
 @app.route("/")
 def index():
     print(url_for("index"))
-    return render_template("index.html", title="Главная", menu=menu)
+    return render_template("rkkindex.html", title="Главная", menu=menu)
 
-#Added 19 string
+
+# 19 str
 @app.route("/contact", methods=["POST", "GET"])
 def contact():
     if request.method == "POST":
-        print(request.form['username'], request.form['email'], request.form['message'])
+        if len(request.form['username']) > 2:
+            flash('Сообщение отправлено!')
+        else:
+            flash('Введите корректное имя')
 
+        print(request.form['username'], request.form['email'], request.form['message'])
     return render_template("contact.html", title="Обратная связь", menu=menu)
 
 
