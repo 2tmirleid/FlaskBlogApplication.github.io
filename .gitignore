@@ -1,2 +1,7 @@
 /.idea
 /venv
+/static
+flask.db
+sq_db.sql
+helpers.txt
+identifier.sqlite

@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-    {% if title %}
-    <title>Про Flask - {{ title }}</title>
-    {% else %}
-    <title>Про Flask</title>
-    {% endif %}
+        {% if title %}
+            <title>{{ title }}</title>
+        {% endif %}
     {% endblock %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat">
+
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/header.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/footer.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/home.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/about.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/portfolio.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/contacts.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/map.css') }}">#}
+
+    <script src="../static/js/map.js"></script>
+    <script src="https://kit.fontawesome.com/6199e25e57.js" crossorigin="anonymous"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=415c92de-342e-4890-b616-e44b5c6c9289"
+            type="text/javascript"></script>
 </head>
 <body>
-  {% block content %}
-    {% block mainmenu %}
-      <ul>
-        {% for m in menu %}
-          <a href="{{ m.url }}"><li>{{ m.name }}</li></a>
-        {% endfor %}
-      </ul>
-    {% endblock mainmenu %}
-    {% if title %}
-      <h1>{{ title }}</h1>
-    {% else %}
-      <h1>Про Flask</h1>
-    {% endif %}
-  {% endblock %}
+{% block content %}
+    {%- block mainmenu -%}
+        <ul class="mainmenu">
+            {% for m in menu -%}
+                <li><a href="{{ url_for('addPost') }}">{{ m.title }}</a></li>
+            {% endfor -%}
+        </ul>
+    {% endblock mainmenu -%}
+{% endblock %}
 </body>
 </html>
